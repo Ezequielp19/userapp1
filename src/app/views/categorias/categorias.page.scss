@@ -1,0 +1,23 @@
+// Estilos para el fondo del contenido
+.content-background {
+  background: #ebebeb; /* Color de fondo suave para el contenido */
+  padding: 16px; /* Espaciado alrededor del contenido */
+}
+
+// Estilos para la tarjeta
+.category-card {
+  background: #ebebeb; /* Fondo blanco para la tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil alrededor de la tarjeta */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-bottom: 16px; /* Espaciado en la parte inferior */
+}
+
+// Estilos adicionales para el botón, si es necesario
+ion-button {
+  --background: #3880ff; /* Color de fondo del botón */
+  --color: #ffffff; /* Color del texto del botón */
+}
+
+ion-content{
+    --background: #ebebeb;
+}

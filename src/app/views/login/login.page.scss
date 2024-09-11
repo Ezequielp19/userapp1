@@ -1,0 +1,81 @@
+// ion-content {
+//   --background: #f4f5f8;
+// }
+
+// .form-container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+// ion-item {
+//   margin-bottom: 16px;
+//   border-radius: 8px;
+// }
+
+// ion-label {
+//   font-weight: bold;
+// }
+
+// ion-button {
+//   --background: #3880ff;
+//   --color: #fff;
+// }
+
+
+ion-header {
+  --background: #007bff; // Color del fondo del encabezado
+  --color: white; // Color del texto del encabezado
+}
+
+ion-title {
+  font-size: 36px; // Tamaño de fuente grande para una mejor visibilidad
+}
+
+.ion-content {
+  --background: #f8f8f8; // Fondo claro
+  padding: 20px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ion-img {
+  width: 80%; // Tamaño de la imagen ajustado para TV
+  max-width: 400px; // Tamaño máximo de la imagen
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; // Espacio entre los elementos del formulario
+}
+
+ion-item {
+  margin-bottom: 16px; // Espacio inferior para los items del formulario
+}
+
+ion-label {
+  font-size: 22px; // Tamaño de fuente de las etiquetas
+}
+
+ion-input {
+  font-size: 24px; // Tamaño de fuente de la entrada
+}
+
+ion-button {
+  font-size: 26px; // Tamaño de fuente del botón
+  padding: 12px; // Padding ajustado
+}
+
+ion-button[expand="full"] {
+  --border-radius: 8px; // Bordes redondeados para botones
+}
+
+ion-button[color="light"] {
+  --background: #f8f9fa; // Fondo claro para el botón secundario
+  --color: #007bff; // Color del texto del botón secundario
+}

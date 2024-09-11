@@ -1,0 +1,77 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"  >Lista de APKs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-item>
+    <ion-label>Categoría</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterApks()" tabindex="0">
+      <ion-select-option value="">Todas</ion-select-option>
+      <ion-select-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
+        {{ categoria.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+
+
+  <ion-list>
+    <ion-item
+      *ngFor="let apk of apks$ | async"
+      class="apk-item"
+      [ngStyle]="{ 'background-image': 'url(' + apk.imagenUrl + ')' }"
+      tabindex="0"
+    >
+      <div class="apk-overlay">
+        <ion-label class="apk-details">
+          <h2>{{ apk.nombre }}</h2>
+
+        </ion-label>
+        <ion-button fill="solid" color="primary" class="apk-button" [href]="apk.apkUrl" download="{{ apk.nombre }}.apk">
+          Descargar
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Lista de APKs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<br>
+<br>
+
+<ion-content>
+  <!-- <ion-item>
+    <ion-label>Categoría</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterApks()">
+      <ion-select-option value="">Todas</ion-select-option>
+      <ion-select-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
+        {{ categoria.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+<ion-list>
+    <ion-item *ngFor="let apk of filteredApks$ | async">
+      <ion-label>
+        <h2>{{ apk.nombre }}</h2>
+        <p>{{ apk.descripcion }}</p>
+      </ion-label>
+      <ion-button (click)="downloadAPK(apk.apkUrl)" color="primary">
+        Descargar APK
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

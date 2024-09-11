@@ -1,0 +1,28 @@
+ion-content {
+  --background: #f4f5f8; /* Color de fondo del contenido */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ion-item {
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+ion-label {
+  font-weight: bold;
+}
+
+ion-button {
+  --background: #3880ff; /* Color de fondo del botón */
+  --color: #fff;         /* Color del texto del botón */
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}

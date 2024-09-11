@@ -1,0 +1,242 @@
+<!-- <ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item button (click)="activeSection = 'usuario'">
+        <ion-label>Usuario</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'categorias'">
+        <ion-label>Categoria</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'certificacion-ingresos'">
+        <ion-label>Certificación de Ingresos</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'planes-pago'">
+        <ion-label>Planes de Pago</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'informacion-personal'">
+        <ion-label>Información Personal</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'facturacion'">
+        <ion-label>Facturación</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'declaracion-jurada'">
+        <ion-label>Declaración Jurada</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'sueldos'">
+        <ion-label>Sueldos</ion-label>
+      </ion-item>
+      <ion-item button (click)="activeSection = 'f931'">
+        <ion-label>f931</ion-label>
+      </ion-item>
+      <ion-item button (click)="goHome()">
+        <ion-label>Home</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ getTitle() }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content" class="ion-padding">
+  <div *ngIf="activeSection === 'usuario'">
+    <form [formGroup]="usuarioForm" (ngSubmit)="saveUsuario()">
+      <ion-item>
+        <ion-label position="floating">DNI</ion-label>
+        <ion-input formControlName="dni"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'afip'">
+    <form [formGroup]="afipForm" (ngSubmit)="saveAfip()">
+      <ion-item>
+        <ion-label position="floating">CUIT</ion-label>
+        <ion-input formControlName="cuit"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Clave Fiscal</ion-label>
+        <ion-input formControlName="claveFiscal"></ion-input>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'certificacion-ingresos'">
+    <form [formGroup]="certificacionIngresosForm" (ngSubmit)="saveCertificacionIngresos()">
+      <ion-item>
+        <ion-label position="floating">Año</ion-label>
+        <ion-input formControlName="anio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, certificacionIngresosForm, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'planes-pago'">
+    <form [formGroup]="planesPagoForm" (ngSubmit)="savePlanesPago()">
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, planesPagoForm, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'informacion-personal'">
+    <form [formGroup]="informacionPersonalForm" (ngSubmit)="saveInformacionPersonal()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input formControlName="apellido"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input formControlName="direccion"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, informacionPersonalForm, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'facturacion'">
+    <form [formGroup]="facturacionForm" (ngSubmit)="saveFacturacion()">
+      <ion-item>
+        <ion-label position="floating">Factura</ion-label>
+        <ion-input formControlName="facturas"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, facturacionForm, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'declaracion-jurada'">
+    <form [formGroup]="declaracionJuradaForm" (ngSubmit)="saveDeclaracionJurada()">
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, declaracionJuradaForm, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'sueldos'">
+    <form [formGroup]="sueldosForm" (ngSubmit)="saveSueldos()">
+      <ion-item>
+        <ion-label position="floating">Mes</ion-label>
+        <ion-input formControlName="mes"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Año</ion-label>
+        <ion-input formControlName="anio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, sueldosForm, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="activeSection === 'f931'">
+    <form [formGroup]="f931Form" (ngSubmit)="saveF931()">
+      <ion-item>
+        <ion-label position="floating">PDF</ion-label>
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+          </svg>
+          <div class="mt-4 flex text-sm leading-6 text-gray-600">
+            <label for="file-upload-certificacion-ingresos" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+              <input (change)="uploadFile($event, f931Form, 'pdf')" id="file-upload-certificacion-ingresos" name="file-upload" type="file" class="sr-only">
+            </label>
+          </div>
+        </div>
+      </ion-item>
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+    </form>
+  </div>
+</ion-content> -->

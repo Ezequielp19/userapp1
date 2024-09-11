@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Subir APK</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content-background">
+  <ion-card class="apk-card">
+    <ion-card-header>
+      <ion-card-title color="primary" style="text-align: center;">Subir Nuevo APK</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <!-- Nombre del APK -->
+      <ion-item>
+        <ion-label position="floating" style="text-align: center;">Nombre del APK</ion-label>
+        <ion-input [(ngModel)]="nombreApk" placeholder="Ingrese el nombre"></ion-input>
+      </ion-item>
+
+      <!-- Descripción del APK -->
+      <ion-item>
+        <ion-label position="floating" style="text-align: center;">Descripción del APK</ion-label>
+        <ion-textarea [(ngModel)]="descripcionApk" placeholder="Ingrese una descripción"></ion-textarea>
+      </ion-item>
+
+      <!-- Seleccionar Categoría -->
+      <ion-item>
+        <ion-label>Categoría (Opcional)</ion-label>
+        <ion-select [(ngModel)]="categoriaSeleccionada" placeholder="Seleccione una categoría">
+          <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Subir Imagen -->
+      <ion-item>
+        <ion-label>Subir Imagen (Opcional)</ion-label>
+        <input type="file" (change)="onFileSelected($event, 'imagen')"/>
+      </ion-item>
+
+      <!-- Subir APK -->
+      <ion-item>
+        <ion-label>Subir APK</ion-label>
+        <input type="file" (change)="onFileSelected($event, 'apk')"/>
+      </ion-item>
+
+      <!-- Botón para Subir APK -->
+      <!-- <ion-button expand="block" color="primary" (click)="subirApk()">
+        Subir APK
+      </ion-button> -->
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mostrar APKs -->
+  <ion-list *ngIf="apks.length > 0">
+    <ion-item *ngFor="let apk of apks">
+      <ion-label>
+        <h2>{{ apk.nombre }}</h2>
+        <p>{{ apk.descripcion }}</p>
+        <img *ngIf="apk.imagenUrl" [src]="apk.imagenUrl" alt="{{ apk.nombre }}" style="max-width: 100px;"/>
+      </ion-label>
+      <ion-button fill="outline" color="danger" (click)="borrarApk(apk.id)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        Borrar
+      </ion-button>
+      <ion-button fill="outline" color="success" [href]="apk.apkUrl" [download]="apk.nombre + '.apk'">
+  <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+  Descargar
+</ion-button>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-text *ngIf="apks.length === 0" color="medium" style="text-align: center; display: block;">No hay APKs subidos.</ion-text>
+</ion-content>

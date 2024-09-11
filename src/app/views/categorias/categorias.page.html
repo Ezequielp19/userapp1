@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+  <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Administrar Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content-background">
+  <ion-card class="category-card">
+    <ion-card-header>
+      <ion-card-title color="primary"  style="text-align: center;">Crear Categoría</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating" style="text-align: center;">Nombre de la Categoría</ion-label>
+        <ion-input [(ngModel)]="nombre" placeholder="Ingrese el nombre"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" style="text-align: center;">Descripción (Opcional)</ion-label>
+        <ion-textarea [(ngModel)]="descripcion" placeholder="Ingrese una descripción"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" (click)="agregarCategoria()">
+        Crear Categoría
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mostrar Categorías -->
+  <ion-list *ngIf="categoriasPaginas.length > 0">
+    <ion-item *ngFor="let categoria of categoriasPaginas">
+      <ion-label>
+        <h2>{{ categoria.nombre }}</h2>
+        <p>{{ categoria.descripcion }}</p>
+      </ion-label>
+      <ion-button fill="outline" color="danger" (click)="borrarCategoria(categoria.id)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        Borrar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+<br>
+
+  <ion-text *ngIf="categoriasPaginas.length === 0" color="medium" style="text-align: center; display: block;" >No hay categorías creadas.</ion-text>
+
+<br>
+
+  <!-- Controles de Paginado -->
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="cambiarPagina(-1)" [disabled]="paginaActual === 1">
+          Anterior
+        </ion-button>
+      </ion-buttons>
+     <ion-title style="text-align: center;">
+  Página {{ paginaActual }} de {{ totalPaginas }}
+</ion-title>
+
+
+      <ion-buttons slot="end">
+        <ion-button (click)="cambiarPagina(1)" [disabled]="paginaActual === totalPaginas">
+          Siguiente
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

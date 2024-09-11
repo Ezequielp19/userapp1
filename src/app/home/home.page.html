@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+      <ion-back-button defaultHref="/lista" text="" class="back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Detalle del APK</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<br>
+
+<ion-content class="center-content" *ngIf="apk$ | async as apk">
+  <ion-card class="center-card">
+    <img [src]="apk.imagenUrl" class="apk-image"/>
+    <ion-card-header>
+      <ion-card-title class="apk-title">{{ apk.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="apk-description">{{ apk.descripcion }}</p>
+ <ion-button (click)="downloadApk(apk.apkUrl, apk.nombre)" class="download-button">
+  Descargar APK
+</ion-button>
+   </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,64 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+ <div class="logo-container">
+    <ion-img src="../../../assets/921f7e33-73ae-41a2-a7fd-1624202c99d5-removebg-preview.png" alt="Logo"></ion-img>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating" >DNI</ion-label>
+      <ion-input formControlName="dni" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CONTRASEÑA</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <br>
+    <ion-button type="submit" expand="block" [disabled]="!loginForm.valid">Iniciar Sesión</ion-button>
+
+    <br>
+
+  <ion-button expand="block" href="https://wa.me/5491150639154" target="_blank">Olvidé Mi Contraseña</ion-button>
+
+  </form>
+
+</ion-content> -->
+
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="logo-container">
+    <ion-img src="../../../assets/icon/921f7e33-73ae-41a2-a7fd-1624202c99d5-removebg-preview.png" style="width: 100px;" alt="Logo"></ion-img>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating">DNI</ion-label>
+      <ion-input formControlName="dni" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CONTRASEÑA</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="full" [disabled]="!loginForm.valid">Iniciar Sesión</ion-button>
+
+    <!-- <ion-button expand="full" color="light" href="https://wa.me/5491132111571" target="_blank">Olvidé Mi Contraseña</ion-button> -->
+  </form>
+
+</ion-content>
+

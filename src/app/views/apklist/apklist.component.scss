@@ -1,0 +1,68 @@
+ion-content {
+  --background: #f8f8f8;
+  padding: 16px;
+}
+
+.apk-item {
+  background-size: contain;
+
+  border-radius: 8px;
+  margin-bottom: 25px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apk-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.apk-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.apk-details h2 {
+  font-size: 28px;
+  margin: 0;
+  color: blue;
+  padding-bottom: 8px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.apk-details p {
+  font-size: 18px;
+  margin: 0;
+  padding-bottom: 16px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.apk-button {
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+
+  font-size: 22px;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+}
+
+.apk-button:hover, .apk-button:focus {
+  background-color: #0056b3;
+}
+
+:host {
+  background-color: #ebebeb;
+}
+
+ion-content {
+  --background: #ebebeb;
+}
+

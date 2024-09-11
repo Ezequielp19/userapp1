@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title  class="ion-text-center" >Ver Usuario</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container" *ngIf="usuario">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Datos del Usuario</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>DNI:</strong> {{ usuario.dni }}</p>
+        <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+        <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+      </ion-card-content>
+    </ion-card>
+
+   
+
+  </div>
+
+  <div *ngIf="!usuario">
+    <ion-spinner name="crescent"></ion-spinner> <p>Cargando datos del usuario...</p>
+  </div>
+</ion-content>
