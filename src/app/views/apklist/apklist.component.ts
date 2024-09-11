@@ -96,6 +96,9 @@ export class ApkListComponent implements OnInit {
   // Método simplificado para descargar el APK
   async downloadAPK(apkUrl: string) {
     try {
+
+// Mostrar alerta de descarga iniciada
+    alert('Descargando APK...');
       // Realiza una solicitud HTTP para obtener el APK como un Blob
       const response = await this.http.get(apkUrl, { responseType: 'blob' }).toPromise();
 
@@ -104,6 +107,9 @@ export class ApkListComponent implements OnInit {
       link.href = window.URL.createObjectURL(response);
       link.download = 'app.apk';  // Nombre del archivo descargado
       link.click();  // Simula el clic para descargar el archivo
+
+// Mostrar alerta de descarga finalizada
+    alert('Descarga finalizada.');
 
       console.log('APK descargada.');
     } catch (error) {
