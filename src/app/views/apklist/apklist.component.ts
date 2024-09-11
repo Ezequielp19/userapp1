@@ -93,27 +93,36 @@ export class ApkListComponent implements OnInit {
     }
   }
 
-  // Método simplificado para descargar el APK
+ // Método simplificado para descargar el APK y guardarlo en Android
   async downloadAPK(apkUrl: string) {
     try {
-
-// Mostrar alerta de descarga iniciada
-    alert('Descargando APK...');
       // Realiza una solicitud HTTP para obtener el APK como un Blob
       const response = await this.http.get(apkUrl, { responseType: 'blob' }).toPromise();
 
-      // Crea un enlace invisible para iniciar la descarga
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(response);
-      link.download = 'app.apk';  // Nombre del archivo descargado
-      link.click();  // Simula el clic para descargar el archivo
+      // Convierte el Blob a una URL de objeto
+      const blobUrl = window.URL.createObjectURL(response);
 
-// Mostrar alerta de descarga finalizada
-    alert('Descarga finalizada.');
+      // Convierte el Blob a base64 si estás en Android
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64data = reader.result as string;
 
-      console.log('APK descargada.');
+        if (this.platform.is('android')) {
+          await Filesystem.writeFile({
+            path: 'Download/app.apk', // Cambia el path a la carpeta de descargas de Android
+            data: base64data.split(',')[1], // Elimina la cabecera base64
+            directory: Directory.External, // Usa el almacenamiento externo en Android
+            encoding: Encoding.UTF8
+          });
+
+          console.log('APK guardada en la carpeta de Descargas.');
+        }
+      };
+
+      // Lee el Blob como un Data URL
+      reader.readAsDataURL(response);
     } catch (error) {
-      console.error('Error al descargar el APK:', error);
+      console.error('Error al descargar o guardar el APK:', error);
     }
   }
 
